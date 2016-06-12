@@ -1,0 +1,76 @@
+package my.game.campaign.hud;
+
+import my.game.constants.Constants;
+import my.game.menuState.Label;
+
+import java.awt.*;
+
+public class Timer extends Label
+{
+    private int lastTime;
+    private int now;
+    private double initialTime;
+
+    public Timer(int x, int y, int scale, String name)
+    {
+        super(x, y, 50, "0", new Constants().nameColor, new Constants().boxColor);
+        initialTime = Integer.parseInt(name);
+    }
+
+    public void tick()
+    {
+        super.tick();
+        now++;
+        if (now - lastTime >= 6)
+        {
+            lastTime += 6;
+            name = String.valueOf(Math.round((Double.parseDouble(name) - 0.1) * 10.0) / 10.0);
+        }
+        stringWidth = (int) new FontMetrics(new Font("Arial", Font.PLAIN, scale))
+        {
+            private static final long serialVersionUID = 1L;
+        }.getStringBounds(name, null).getWidth();
+        width = (int) (new FontMetrics(new Font("Arial", Font.PLAIN, scale))
+        {
+            private static final long serialVersionUID = 1L;
+        }.getStringBounds(name, null).getWidth() + scale / 4);
+    }
+
+    public void setTime(double time)
+    {
+        this.name = String.valueOf(time);
+        stringWidth = (int) new FontMetrics(new Font("Arial", Font.PLAIN, scale))
+        {
+            private static final long serialVersionUID = 1L;
+        }.getStringBounds(name, null).getWidth();
+        width = (int) (new FontMetrics(new Font("Arial", Font.PLAIN, scale))
+        {
+            private static final long serialVersionUID = 1L;
+        }.getStringBounds(name, null).getWidth() + scale / 4);
+    }
+
+    public void render(Graphics g)
+    {
+        super.render(g);
+    }
+
+    public double getElapsedTime()
+    {
+        return initialTime - Double.parseDouble(name);
+    }
+
+    public double getInitialTime()
+    {
+        return initialTime;
+    }
+
+    public void reset()
+    {
+        name = String.valueOf(initialTime);
+    }
+
+    public double getTime()
+    {
+        return Double.parseDouble(name);
+    }
+}
