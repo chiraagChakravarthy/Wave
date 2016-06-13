@@ -1,12 +1,12 @@
-package my.game.campaign;
+package my.game.campaign.menu;
 
 import my.game.constants.Constants;
 import my.game.engine.Game;
 import my.game.game_state.CampaignState;
 import my.game.game_state.GameState;
 import my.game.game_state.MenuState;
-import my.game.menuState.SlideEnterMenu;
-import my.game.menuState.SlidingOption;
+import my.game.menu.SlideEnterMenu;
+import my.game.menu.SlidingOption;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

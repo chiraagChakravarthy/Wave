@@ -1,4 +1,4 @@
-package my.game.menuState;
+package my.game.menu;
 
 import my.game.game_state.GameState;
 

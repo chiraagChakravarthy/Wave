@@ -1,8 +1,9 @@
-package my.game.menuState;
+package my.game.menu;
 
 import my.game.constants.Constants;
 import my.game.engine.Game;
 import my.game.game_state.GameState;
+import my.game.game_state.InfiniteState;
 import my.game.game_state.MenuState;
 
 public class GameTypeMenu extends SlideEnterMenu
@@ -44,6 +45,7 @@ public class GameTypeMenu extends SlideEnterMenu
 
                 case 1:
                     state.getGsm().setGameState(2);
+                    Game.window.setTitle("Game Selection");
                     break;
 
                 case 2:

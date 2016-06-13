@@ -1,4 +1,4 @@
-package my.game.menuState;
+package my.game.menu;
 
 import java.awt.*;
 
@@ -65,6 +65,7 @@ public class Label
 
     public void tick()
     {
+
     }
 
     public void render(Graphics g)
@@ -79,6 +80,18 @@ public class Label
     public int getHeight()
     {
         return this.height;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+        FontMetrics metrics = new FontMetrics(new Font("Arial", 0, scale))
+        {
+            private static final long serialVersionUID = -8572322988205722333L;
+        };
+        this.width = (int) (metrics.getStringBounds(name, null).getWidth() + (double) (scale / 4));
+        this.height = (int) (metrics.getStringBounds(name, null).getHeight() + (double) (scale / 8));
+        this.stringWidth = (int) metrics.getStringBounds(name, null).getWidth();
     }
 
     public String getName()
@@ -99,6 +112,16 @@ public class Label
     public double getY()
     {
         return y;
+    }
+
+    public void setNameColor(Color nameColor)
+    {
+        this.nameColor = nameColor;
+    }
+
+    public void setBoxColor(Color boxColor)
+    {
+        this.boxColor = boxColor;
     }
 }
 

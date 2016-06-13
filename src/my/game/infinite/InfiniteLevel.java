@@ -22,7 +22,7 @@ public class InfiniteLevel
         Entity.setLevelBounds(levelBounds);
     }
 
-    public void tick(double delta)
+    public void tick()
     {
         player.tick();
         timer.tick();
@@ -59,5 +59,10 @@ public class InfiniteLevel
     {
         player = new Player(new Constants().player);
         timer = new InfiniteTimer(10, 10);
+    }
+
+    public Rectangle getLevelBounds()
+    {
+        return levelBounds;
     }
 }

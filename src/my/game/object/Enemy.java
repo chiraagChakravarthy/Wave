@@ -25,6 +25,7 @@ public class Enemy extends Entity
         super(enemy);
         this.difficulty = getDifficultyLevel();
         spawnProtectionTimer = 30;
+        random = new Random();
     }
 
     public void tick()

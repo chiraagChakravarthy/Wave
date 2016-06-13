@@ -1,12 +1,12 @@
 package my.game.game_state;
 
-import my.game.campaign.DeathMenu;
+import my.game.campaign.menu.DeathMenu;
 import my.game.campaign.GameLevel;
-import my.game.campaign.LevelEndMenu;
-import my.game.campaign.PauseMenu;
+import my.game.campaign.menu.LevelEndMenu;
+import my.game.campaign.menu.PauseMenu;
 import my.game.campaign.levels.*;
 import my.game.engine.Game;
-import my.game.menuState.LevelSelectMenu;
+import my.game.menu.LevelSelectMenu;
 
 import java.awt.*;
 import java.util.ArrayList;

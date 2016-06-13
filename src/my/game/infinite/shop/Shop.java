@@ -1,50 +1,88 @@
 package my.game.infinite.shop;
 
-import my.game.constants.Constants;
 import my.game.game_state.GameState;
-import my.game.menuState.SlideEnterMenu;
-import my.game.menuState.SlidingOption;
+import my.game.menu.Menu;
+import my.game.menu.Option;
 
-public class Shop extends SlideEnterMenu
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+
+public abstract class Shop extends Menu
 {
-    private int credits;
-
+    protected ArrayList<Menu> menus;
+    protected int menu;
     public Shop(GameState state)
     {
         super(state);
-        setOptions();
+        menus = new ArrayList<Menu>();
     }
 
     public void tick()
     {
-        for (int i = 0; i < options.size(); i++)
+        if(menu == 0)
         {
-            ((SlidingOption) options.get(i)).setHighlighted(i == highlightedOption);
-        }
-    }
-
-    protected void select()
-    {
-        if (!super.optionMoving())
-        {
-            switch (highlightedOption)
+            for(int i = 0; i < options.size(); i++)
             {
-                case 0:
-
-
-                case 1:
+                ((Option)options.get(i)).setHighlighted(i == highlightedOption);
             }
         }
+        else
+            menus.get(menu - 1).tick();
+
     }
 
-    private void setOptions()
+    public void render(Graphics g)
     {
+        if(menu == 0)
+            super.render(g);
+        else
+            menus.get(menu - 1).render(g);
+    }
 
-        options.add(new SlidingOption(10, 10, 20, "Health", new Constants().nameColor, new Constants().boxColor, 0));
-        options.add(new SlidingOption(80, 10, 20, "Boost", new Constants().nameColor, new Constants().boxColor, 0));
-        for (int i = 0; i < options.size(); i++)
+    public void keyPressed(int k)
+    {
+        if(menu == 0)
         {
-            options.get(i).setWidth(60);
+            switch(k)
+            {
+                case KeyEvent.VK_D:
+                case KeyEvent.VK_RIGHT:
+                    highlightedOption++;
+                    break;
+
+                case KeyEvent.VK_A:
+                case KeyEvent.VK_LEFT:
+                    highlightedOption--;
+                    break;
+
+                default:
+                    super.keyPressed(k);
+                    break;
+            }
         }
+        else
+            menus.get(menu - 1).keyPressed(k);
+    }
+
+    public void keyReleased(int k)
+    {
+        if(menu == 0)
+            super.keyReleased(k);
+        else
+            menus.get(menu - 1).keyReleased(k);
+    }
+
+    public void setMenu(int menu)
+    {
+        if(menu < options.size())
+            this.menu = menu;
+
+    }
+
+    public void addShop(Menu shop, Option option)
+    {
+        options.add(option);
+        menus.add(shop);
     }
 }

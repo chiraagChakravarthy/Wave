@@ -32,6 +32,7 @@ public abstract class Entity
         this.dcc = dcc;
         this.maxSpeed = maxSpeed;
         this.tail = tail;
+        hitBox = new Rectangle((int)x, (int)y, 32, 32);
     }
 
     public Entity(Entity entity)

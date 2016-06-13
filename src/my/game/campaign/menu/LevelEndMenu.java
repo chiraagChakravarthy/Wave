@@ -1,13 +1,13 @@
-package my.game.campaign;
+package my.game.campaign.menu;
 
 import my.game.constants.Constants;
 import my.game.engine.Game;
 import my.game.game_state.CampaignState;
 import my.game.game_state.GameState;
 import my.game.game_state.MenuState;
-import my.game.menuState.Label;
-import my.game.menuState.Menu;
-import my.game.menuState.Option;
+import my.game.menu.Label;
+import my.game.menu.Menu;
+import my.game.menu.Option;
 
 import java.awt.*;
 

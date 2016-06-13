@@ -1,58 +1,85 @@
 package my.game.game_state;
 
-import my.game.infinite.InfiniteLevel;
-import my.game.infinite.shop.Shop;
+import my.game.infinite.InfiniteGame;
+import my.game.infinite.menu.GameSelectionMenu;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class InfiniteState extends GameState
 {
-    private InfiniteLevel level;
-    private Shop shop;
-    private boolean inShop;
-
+    private ArrayList<InfiniteGame> games;
+    private int game;
+    private GameSelectionMenu gameMenu;
+    private boolean inMenu;
     public InfiniteState(GameStateManager gsm)
     {
         super(gsm);
-        level = new InfiniteLevel(this);
-        shop = new Shop(this);
-        setInShop(true);
+        games = new ArrayList<InfiniteGame>();
+        gameMenu = new GameSelectionMenu(this);
+        gameMenu.setOptions(games.size());
+        inMenu = true;
     }
 
     public void tick(double delta)
     {
-        if (!inShop)
-            shop.tick();
+        if(inMenu)
+            gameMenu.tick();
         else
-            level.tick(delta);
+        {
+            games.get(game).tick();
+        }
     }
 
     public void render(Graphics g)
     {
-        if (!inShop)
-            shop.render(g);
+        if(inMenu)
+            gameMenu.render(g);
         else
-            level.render(g);
+            games.get(game).render(g);
     }
 
     public void keyPressed(int k)
     {
-        if (!inShop)
-            shop.keyPressed(k);
+        if(inMenu)
+            gameMenu.keyPressed(k);
         else
-            level.keyPressed(k);
+            games.get(game).keyPressed(k);
     }
 
     public void keyReleased(int k)
     {
-        if (!inShop)
-            shop.keyReleased(k);
+        if(inMenu)
+            gameMenu.keyReleased(k);
         else
-            level.keyReleased(k);
+            games.get(game).keyReleased(k);
     }
 
-    public void setInShop(boolean inShop)
+    public void newGame()
     {
-        this.inShop = inShop;
+        games.add(new InfiniteGame(this));
+        game = games.size() - 1;
+        inMenu = false;
+    }
+
+    public void setGame(int game)
+    {
+        this.game = game;
+        inMenu = false;
+    }
+
+    public void setInMenu(boolean inMenu)
+    {
+        this.inMenu = inMenu;
+        gameMenu.setOptions(games.size());
+    }
+
+    public int getGameNumber()
+    {
+        return game;
+    }
+    public InfiniteGame getGame()
+    {
+        return games.get(game);
     }
 }

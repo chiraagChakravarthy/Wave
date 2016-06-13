@@ -1,7 +1,7 @@
 package my.game.game_state;
 
-import my.game.menuState.*;
-import my.game.menuState.Menu;
+import my.game.menu.*;
+import my.game.menu.Menu;
 
 import java.awt.*;
 import java.util.ArrayList;

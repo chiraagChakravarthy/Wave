@@ -1,4 +1,4 @@
-package my.game.infinite.object;
+package my.game.infinite.object.abilities;
 
 import my.game.object.Entity;
 

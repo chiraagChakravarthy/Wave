@@ -1,7 +1,7 @@
 package my.game.infinite.hud;
 
 import my.game.constants.Constants;
-import my.game.menuState.Label;
+import my.game.menu.Label;
 
 import java.awt.*;
 
