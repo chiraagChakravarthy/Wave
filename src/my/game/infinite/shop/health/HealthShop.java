@@ -19,14 +19,10 @@ public class HealthShop extends Shop
     {
         super(state);
         this.shop = shop;
-        addShop(new BSMaxHealth(state, this), new Option(10, 10, 20, "Max Health", new Color(0, 255, 0), new Color(0, 128, 0)));
-        addShop(new BSInvulnerability(state, this), new Option(245, 10, 20, "Invulnerability", new Color(0, 255, 0), new Color(0, 128, 0)));
-        addShop(new BSRegeneration(state, this), new Option(Game.WIDTH - 160, 10, 20, "Regeneration", new Color(0, 255, 0), new Color(0, 128, 0)));
-        options.add(new Option(400, 50, "Back", new Color(0, 255, 0), new Color(0, 128, 0)));
-        for(int i = 0; i < options.size(); i++)
-        {
-            options.get(i).setWidth(150);
-        }
+        addShop(new BSMaxHealth(state, this), new Option(10, 20, "Max Health", new Color(0, 255, 0), new Color(0, 128, 0)));
+        addShop(new BSInvulnerability(state, this), new Option(40, 20, "Invulnerability", new Color(0, 255, 0), new Color(0, 128, 0)));
+        addShop(new BSRegeneration(state, this), new Option(70, 20, "Regeneration", new Color(0, 255, 0), new Color(0, 128, 0)));
+        options.add(new Option(200, 50, "Back", new Color(100, 255, 0), new Color(0, 128, 0)));
     }
 
     protected void select()

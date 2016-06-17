@@ -11,8 +11,7 @@ import java.awt.*;
 public class InfiniteGame
 {
     private InfinitePlayer player;
-    private
-    MainShop shop;
+    private MainShop shop;
     private InfiniteLevel level;
     private GameMenu gameMenu;
     private GameState state;
@@ -93,12 +92,12 @@ public class InfiniteGame
         this.gameState = gameState;
     }
 
-    public void setCredits(int credits)
+    public void setCredits(double credits)
     {
         shop.setCredits(credits);
     }
 
-    public int getCredits()
+    public double getCredits()
     {
         return shop.getCredits();
     }

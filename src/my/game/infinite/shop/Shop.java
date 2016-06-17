@@ -44,22 +44,7 @@ public abstract class Shop extends Menu
     {
         if(menu == 0)
         {
-            switch(k)
-            {
-                case KeyEvent.VK_D:
-                case KeyEvent.VK_RIGHT:
-                    highlightedOption++;
-                    break;
-
-                case KeyEvent.VK_A:
-                case KeyEvent.VK_LEFT:
-                    highlightedOption--;
-                    break;
-
-                default:
-                    super.keyPressed(k);
-                    break;
-            }
+            super.keyPressed(k);
         }
         else
             menus.get(menu - 1).keyPressed(k);

@@ -1,16 +1,16 @@
-package my.game.infinite.shop.health;
+package my.game.infinite.shop.abilities.warp;
 
 
 import my.game.game_state.GameState;
 import my.game.infinite.shop.BuySellMenu;
 import my.game.infinite.shop.Shop;
 
-public class BSInvulnerability extends BuySellMenu
+public class BSWarpCharge extends BuySellMenu
 {
 
-    public BSInvulnerability(GameState state, Shop shop)
+    public BSWarpCharge(GameState state, Shop shop)
     {
-        super(state, "Invulnerability", 10, shop);
+        super(state, "Charge Rate", 15, shop);
     }
 
     protected void buy()

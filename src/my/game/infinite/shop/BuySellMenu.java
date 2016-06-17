@@ -64,18 +64,40 @@ public abstract class BuySellMenu extends Menu
     {
         switch(k)
         {
+            case KeyEvent.VK_W:
+            case KeyEvent.VK_UP:
+                if(highlightedOption == 2)
+                    highlightedOption = 0;
+                else
+                    highlightedOption = 2;
+                break;
+
             case KeyEvent.VK_D:
             case KeyEvent.VK_RIGHT:
-                highlightedOption++;
+                if(highlightedOption == 0)
+                    highlightedOption = 1;
+                else if(highlightedOption == 1)
+                    highlightedOption = 0;
+                break;
+
+            case KeyEvent.VK_S:
+            case KeyEvent.VK_DOWN:
+                if(highlightedOption < 2)
+                    highlightedOption = 2;
+                else
+                highlightedOption = 0;
                 break;
 
             case KeyEvent.VK_A:
             case KeyEvent.VK_LEFT:
-                highlightedOption--;
+                if(highlightedOption == 1)
+                    highlightedOption = 0;
+                else if(highlightedOption == 0)
+                    highlightedOption = 1;
                 break;
 
-            default:
-                super.keyPressed(k);
+            case KeyEvent.VK_ENTER:
+                select();
         }
     }
 
