@@ -13,6 +13,7 @@ import my.game.object.Player;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 public abstract class GameLevel
 {
@@ -141,4 +142,14 @@ public abstract class GameLevel
     }
 
     public abstract void init();
+
+    public void mousePressed(MouseEvent e)
+    {
+
+    }
+
+    public void mouseReleased(MouseEvent e)
+    {
+
+    }
 }

@@ -8,23 +8,23 @@ import java.util.ArrayList;
 public abstract class Entity
 {
     protected Position position;
-    protected float velX;
-    protected float velY;
+    protected double velX;
+    protected double velY;
     protected Tail tail;
     protected boolean up, down, left, right;
     protected static Rectangle levelBounds;
     protected Rectangle hitBox;
-    protected float speedUp;
-    protected float speedDown;
-    protected float speedLeft;
-    protected float speedRight;
-    protected float maxSpeed;
-    protected float acc;
-    protected float dcc;
+    protected double speedUp;
+    protected double speedDown;
+    protected double speedLeft;
+    protected double speedRight;
+    protected double maxSpeed;
+    protected double acc;
+    protected double dcc;
     protected boolean invisible;
     protected boolean infinite;
 
-    public Entity(float x, float y, float acc, float dcc, float maxSpeed, Tail tail)
+    public Entity(double x, double y, double acc, double dcc, double maxSpeed, Tail tail)
     {
         position = new Position(x, y);
         invisible = false;
@@ -47,6 +47,13 @@ public abstract class Entity
     }
 
     public void tick()
+    {
+        sortVelocities();
+        checkCollision();
+        updateLocation();
+    }
+
+    public void sortVelocities()
     {
         if (up)
         {
@@ -78,7 +85,7 @@ public abstract class Entity
                 speedLeft = 0;
         }
 
-        if (down) 
+        if (down)
         {
             if (speedDown < maxSpeed)
                 speedDown += acc;
@@ -107,11 +114,19 @@ public abstract class Entity
             else
                 speedRight = 0;
         }
-
         velX = speedRight - speedLeft;
         velY = speedDown - speedUp;
+    }
+
+    public void updateLocation()
+    {
         position.setPosition(position.getX() + velX, position.getY() + velY);
         tail.setLocation(position);
+        hitBox.setLocation((int) position.getX(), (int) position.getY());
+    }
+
+    public void checkCollision()
+    {
         if (position.getX() < 0)
         {
             position.setPosition(0, position.getY());
@@ -132,8 +147,6 @@ public abstract class Entity
             position.setPosition(position.getX(), (float) levelBounds.getHeight() - 32);
             velY = 0;
         }
-
-        hitBox.setLocation((int) position.getX(), (int) position.getY());
     }
 
     public Rectangle getHitBox()
@@ -152,12 +165,12 @@ public abstract class Entity
 
     }
 
-    public float getX()
+    public double getX()
     {
         return position.getX();
     }
 
-    public float getY()
+    public double getY()
     {
         return position.getY();
     }
@@ -182,17 +195,17 @@ public abstract class Entity
         this.right = right;
     }
 
-    public float getAcc()
+    public double getAcc()
     {
         return acc;
     }
 
-    public float getDcc()
+    public double getDcc()
     {
         return dcc;
     }
 
-    public float getMaxSpeed()
+    public double getMaxSpeed()
     {
         return maxSpeed;
     }
@@ -202,7 +215,7 @@ public abstract class Entity
         return tail.getColors();
     }
 
-    public void setLocation(float x, float y)
+    public void setLocation(double x, double y)
     {
         position.setPosition(x, y);
     }
@@ -215,5 +228,70 @@ public abstract class Entity
     public Tail getTail()
     {
         return tail;
+    }
+
+    public double getVelX()
+    {
+        return velX;
+    }
+
+    public double getVelY()
+    {
+        return velY;
+    }
+
+    public boolean isUp()
+    {
+        return up;
+    }
+
+    public boolean isDown()
+    {
+        return down;
+    }
+
+    public boolean isLeft()
+    {
+        return left;
+    }
+
+    public boolean isRight()
+    {
+        return right;
+    }
+
+    public void setAcc(double acc)
+    {
+        this.acc = acc;
+    }
+
+    public void setDcc(double dcc)
+    {
+        this.dcc = dcc;
+    }
+
+    public void setMaxSpeed(double maxSpeed)
+    {
+        this.maxSpeed = maxSpeed;
+    }
+
+    public void setVelX(double velX)
+    {
+        this.velX = velX;
+    }
+
+    public void setVelY(double velY)
+    {
+        this.velY = velY;
+    }
+
+    public void setInvisible(boolean invisible)
+    {
+        this.invisible = invisible;
+    }
+
+    public boolean isInvisible()
+    {
+        return invisible;
     }
 }

@@ -8,6 +8,7 @@ import my.game.game_state.MenuState;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class LevelSelectMenu extends SlideEnterMenu
@@ -27,18 +28,7 @@ public class LevelSelectMenu extends SlideEnterMenu
 
     public void tick()
     {
-        if (optionY > 5)
-            optionY = 0;
-        if (optionY < 0)
-            optionY = 5;
-        if (optionX < 0)
-            optionX = 19;
-        if (optionX > 19)
-            optionX = 0;
-        if (optionY == 5)
-            highlightedOption = 100;
-        else
-            highlightedOption = optionY * 20 + optionX;
+        super.tick();
         for (int i = 0; i < options.size(); i++)
         {
             ((SlidingOption) options.get(i)).setHighlighted(i == highlightedOption);
@@ -73,6 +63,18 @@ public class LevelSelectMenu extends SlideEnterMenu
                 select();
                 break;
         }
+        if (optionY > 5)
+            optionY = 0;
+        if (optionY < 0)
+            optionY = 5;
+        if (optionX < 0)
+            optionX = 19;
+        if (optionX > 19)
+            optionX = 0;
+        if (optionY == 5)
+            highlightedOption = 100;
+        else
+            highlightedOption = optionY * 20 + optionX;
     }
 
     public void keyReleased(int k)

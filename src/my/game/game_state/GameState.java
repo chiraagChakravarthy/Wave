@@ -1,6 +1,7 @@
 package my.game.game_state;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 public abstract class GameState
 {
@@ -23,4 +24,8 @@ public abstract class GameState
     {
         return gsm;
     }
+
+    public abstract void mousePressed(MouseEvent e);
+
+    public abstract void mouseReleased(MouseEvent e);
 }

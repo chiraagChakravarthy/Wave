@@ -1,6 +1,7 @@
 package my.game.game_state;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class GameStateManager
@@ -44,5 +45,15 @@ public class GameStateManager
     public GameState getGameState(int gameState)
     {
         return gameStates.get(gameState);
+    }
+
+    public void mousePressed(MouseEvent e)
+    {
+        gameStates.get(gameState).mousePressed(e);
+    }
+
+    public void mouseReleased(MouseEvent e)
+    {
+        gameStates.get(gameState).mouseReleased(e);
     }
 }

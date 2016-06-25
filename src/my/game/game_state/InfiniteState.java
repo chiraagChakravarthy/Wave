@@ -4,6 +4,7 @@ import my.game.infinite.InfiniteGame;
 import my.game.infinite.menu.GameSelectionMenu;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class InfiniteState extends GameState
@@ -55,6 +56,22 @@ public class InfiniteState extends GameState
             games.get(game).keyReleased(k);
     }
 
+    public void mousePressed(MouseEvent e)
+    {
+        if(inMenu)
+            gameMenu.mousePressed(e);
+        else
+            games.get(game).mousePressed(e);
+    }
+
+    public void mouseReleased(MouseEvent e)
+    {
+        if(inMenu)
+            gameMenu.mouseReleased(e);
+        else
+            games.get(game).mouseReleased(e);
+    }
+
     public void newGame()
     {
         games.add(new InfiniteGame(this));
@@ -81,5 +98,10 @@ public class InfiniteState extends GameState
     public InfiniteGame getGame()
     {
         return games.get(game);
+    }
+
+    public GameSelectionMenu getGameMenu()
+    {
+        return gameMenu;
     }
 }

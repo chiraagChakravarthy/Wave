@@ -1,18 +1,18 @@
-package my.game.infinite;
+package my.game.infinite.level;
 
-import my.game.constants.Constants;
 import my.game.engine.Game;
 import my.game.game_state.GameState;
 import my.game.infinite.hud.InfiniteTimer;
+import my.game.infinite.level.object.InfinitePlayer;
 import my.game.object.Entity;
-import my.game.object.Player;
 import my.game.object.Position;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 public class InfiniteLevel
 {
-    private Player player;
+    private InfinitePlayer player;
     private Rectangle levelBounds = new Rectangle(1000, 1000);
     private InfiniteTimer timer;
 
@@ -31,12 +31,6 @@ public class InfiniteLevel
 
         if (player.getX() + Game.WIDTH / 2 < levelBounds.getWidth() && player.getX() - Game.WIDTH / 2 > 0)
             Position.setXOffset(player.getX() - Game.WIDTH / 2);
-
-
-        if (player.getHealth() <= 0)
-        {
-
-        }
     }
 
     public void render(Graphics g)
@@ -57,12 +51,22 @@ public class InfiniteLevel
 
     public void init()
     {
-        player = new Player(new Constants().player);
+        player = new InfinitePlayer(levelBounds.getWidth() / 2 - 16, levelBounds.getHeight() / 2 - 16);
         timer = new InfiniteTimer(10, 10);
     }
 
     public Rectangle getLevelBounds()
     {
         return levelBounds;
+    }
+
+    public void mousePressed(MouseEvent e)
+    {
+        player.mousePressed(e);
+    }
+
+    public void mouseReleased(MouseEvent e)
+    {
+        player.mouseReleased(e);
     }
 }

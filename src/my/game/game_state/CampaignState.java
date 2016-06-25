@@ -9,6 +9,7 @@ import my.game.engine.Game;
 import my.game.menu.LevelSelectMenu;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class CampaignState extends GameState
@@ -87,6 +88,38 @@ public class CampaignState extends GameState
         }
         else
             levels.get(level).keyReleased(k);
+    }
+
+    public void mousePressed(MouseEvent e)
+    {
+        if (pauseScreen)
+            pauseMenu.mousePressed(e);
+        else if (lvEndScreen)
+        {
+            levelEndMenu.mousePressed(e);
+        }
+        else if (deathScreen)
+        {
+            deathMenu.mousePressed(e);
+        }
+        else
+            levels.get(level).mousePressed(e);
+    }
+
+    public void mouseReleased(MouseEvent e)
+    {
+        if (pauseScreen)
+            pauseMenu.mouseReleased(e);
+        else if (lvEndScreen)
+        {
+            levelEndMenu.mouseReleased(e);
+        }
+        else if (deathScreen)
+        {
+            deathMenu.mouseReleased(e);
+        }
+        else
+            levels.get(level).mouseReleased(e);
     }
 
     public void setPauseScreen(boolean pauseScreen)

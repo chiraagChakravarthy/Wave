@@ -21,6 +21,7 @@ public class GameTypeMenu extends SlideEnterMenu
     public void tick()
     {
         super.setLabelPositions();
+        super.tick();
         if (highlightedOption > options.size() - 1)
             highlightedOption = 0;
         if (highlightedOption < 0)

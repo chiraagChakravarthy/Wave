@@ -36,9 +36,4 @@ public class SlidingOption extends SlidingLabel
     {
         this.highlighted = highlighted;
     }
-
-    public double getFinalX()
-    {
-        return finalX;
-    }
 }

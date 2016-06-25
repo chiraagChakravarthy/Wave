@@ -1,5 +1,9 @@
 package my.game.menu;
 
+import com.sun.org.apache.bcel.internal.generic.BALOAD;
+import com.sun.org.apache.regexp.internal.RE;
+import my.game.engine.Game;
+
 import java.awt.*;
 
 public class Label
@@ -13,6 +17,7 @@ public class Label
     protected int stringWidth;
     protected Color nameColor;
     protected Color boxColor;
+    protected boolean centered;
 
     public Label(int y, int scale, String name, Color nameColor, Color boxColor)
     {
@@ -29,6 +34,7 @@ public class Label
         this.width = this.stringWidth + scale / 4;
         this.height = (int) (metrics.getStringBounds(name, null).getHeight() + (double) (scale / 8));
         this.x = 320 - this.width / 2;
+        centered = true;
     }
 
     public Label(int x, int y, int scale, String name, Color nameColor, Color boxColor)
@@ -46,6 +52,7 @@ public class Label
         this.width = (int) (metrics.getStringBounds(name, null).getWidth() + (double) (scale / 4));
         this.height = (int) (metrics.getStringBounds(name, null).getHeight() + (double) (scale / 8));
         this.stringWidth = (int) metrics.getStringBounds(name, null).getWidth();
+        centered = false;
     }
 
     public void setWidth(int width)
@@ -92,6 +99,8 @@ public class Label
         this.width = (int) (metrics.getStringBounds(name, null).getWidth() + (double) (scale / 4));
         this.height = (int) (metrics.getStringBounds(name, null).getHeight() + (double) (scale / 8));
         this.stringWidth = (int) metrics.getStringBounds(name, null).getWidth();
+        if(centered)
+            x = Game.WIDTH / 2 - width / 2;
     }
 
     public String getName()
@@ -122,6 +131,11 @@ public class Label
     public void setBoxColor(Color boxColor)
     {
         this.boxColor = boxColor;
+    }
+
+    public Rectangle getArea()
+    {
+        return new Rectangle((int)x, (int)y, width, height);
     }
 }
 

@@ -23,6 +23,7 @@ public class MainMenu extends SlideEnterMenu
             ((SlidingOption) options.get(i)).setHighlighted(i == highlightedOption);
         }
         super.setLabelPositions();
+        super.tick();
     }
 
     protected void select()

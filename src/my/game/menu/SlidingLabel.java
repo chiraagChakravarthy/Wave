@@ -48,4 +48,25 @@ public class SlidingLabel extends Label
         return false;
     }
 
+    public void setFinalX(double finalX)
+    {
+        this.finalX = finalX;
+        this.x = finalX;
+    }
+
+    public void setFinalY(double finalY)
+    {
+        this.finalY = finalY;
+        this.y = finalY;
+    }
+
+    public double getFinalX()
+    {
+        return finalX;
+    }
+
+    public double getFinalY()
+    {
+        return finalY;
+    }
 }

@@ -5,9 +5,11 @@ import my.game.game_state.GameStateManager;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 
-public class Game extends Canvas implements Runnable, KeyListener
+public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 {
     private static final long serialVersionUID = 1L;
     private boolean running = false;
@@ -16,7 +18,7 @@ public class Game extends Canvas implements Runnable, KeyListener
     public static final int WIDTH = 640;
     public static final int HEIGHT = WIDTH * 9 / 12;
     public static Window window;
-    public static final boolean debugMode = false;
+    public static final boolean debugMode = true;
 
     public Game()
     {
@@ -28,6 +30,7 @@ public class Game extends Canvas implements Runnable, KeyListener
         thread = new Thread(this);
         gsm = new GameStateManager(0);
         addKeyListener(this);
+        addMouseListener(this);
         requestFocus();
         running = true;
         thread.start();
@@ -63,7 +66,7 @@ public class Game extends Canvas implements Runnable, KeyListener
 
             if (System.currentTimeMillis() - timer >= 1000)
             {
-                System.out.println("FPS: " + frames + ", Ticks: " + updates);
+                //System.out.println("FPS: " + frames + ", Ticks: " + updates);
                 updates = 0;
                 frames = 0;
                 timer += 1000;
@@ -122,5 +125,30 @@ public class Game extends Canvas implements Runnable, KeyListener
     {
         int k = e.getKeyCode();
         gsm.keyReleased(k);
+    }
+
+    public void mouseClicked(MouseEvent e)
+    {
+
+    }
+
+    public void mousePressed(MouseEvent e)
+    {
+        gsm.mousePressed(e);
+    }
+
+    public void mouseReleased(MouseEvent e)
+    {
+        gsm.mouseReleased(e);
+    }
+
+    public void mouseEntered(MouseEvent e)
+    {
+
+    }
+
+    public void mouseExited(MouseEvent e)
+    {
+
     }
 }

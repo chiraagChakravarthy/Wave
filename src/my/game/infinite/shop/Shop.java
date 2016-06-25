@@ -3,12 +3,15 @@ package my.game.infinite.shop;
 import my.game.game_state.GameState;
 import my.game.menu.Menu;
 import my.game.menu.Option;
+import my.game.menu.SlideEnterMenu;
+import my.game.menu.SlidingOption;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public abstract class Shop extends Menu
+public abstract class Shop extends SlideEnterMenu
 {
     protected ArrayList<Menu> menus;
     protected int menu;
@@ -22,14 +25,14 @@ public abstract class Shop extends Menu
     {
         if(menu == 0)
         {
+            setLabelPositions();
             for(int i = 0; i < options.size(); i++)
             {
-                ((Option)options.get(i)).setHighlighted(i == highlightedOption);
+                ((SlidingOption)options.get(i)).setHighlighted(i == highlightedOption);
             }
         }
         else
             menus.get(menu - 1).tick();
-
     }
 
     public void render(Graphics g)
@@ -58,6 +61,22 @@ public abstract class Shop extends Menu
             menus.get(menu - 1).keyReleased(k);
     }
 
+    public void mousePressed(MouseEvent e)
+    {
+        if(menu == 0)
+            super.mousePressed(e);
+        else
+            menus.get(menu - 1).mousePressed(e);
+    }
+
+    public void mouseReleased(MouseEvent e)
+    {
+        if(menu == 0)
+            super.mouseReleased(e);
+        else
+            menus.get(menu - 1).mouseReleased(e);
+    }
+
     public void setMenu(int menu)
     {
         if(menu < options.size())
@@ -65,7 +84,7 @@ public abstract class Shop extends Menu
 
     }
 
-    public void addShop(Menu shop, Option option)
+    public void addShop(Menu shop, SlidingOption option)
     {
         options.add(option);
         menus.add(shop);

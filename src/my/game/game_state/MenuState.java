@@ -4,6 +4,7 @@ import my.game.menu.*;
 import my.game.menu.Menu;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class MenuState extends GameState
@@ -43,6 +44,16 @@ public class MenuState extends GameState
     public void keyReleased(int k)
     {
         menus.get(menu).keyReleased(k);
+    }
+
+    public void mousePressed(MouseEvent e)
+    {
+        menus.get(menu).mousePressed(e);
+    }
+
+    public void mouseReleased(MouseEvent e)
+    {
+        menus.get(menu).mouseReleased(e);
     }
 
     public Menu getMenu(int menu)

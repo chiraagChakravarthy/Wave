@@ -1,67 +1,81 @@
 package my.game.object;
 
+import java.awt.*;
+
 public class Position
 {
-    private float x;
-    private float y;
-    private static float xOffset;
-    private static float yOffset;
+    private double x;
+    private double y;
+    private static double xOffset;
+    private static double yOffset;
 
-    public Position(float x, float y)
+    public Position(double x, double y)
     {
         this.x = x;
         this.y = y;
     }
 
-    public void setPosition(float x, float y)
+    public Position(Point p)
+    {
+        x = p.getX();
+        y = p.getY();
+    }
+
+    public void setPosition(double x, double y)
     {
         this.x = x;
         this.y = y;
     }
 
-    public float getScrX()
+    public double getScrX()
     {
         return x - xOffset;
     }
 
-    public float getScrY()
+    public double getScrY()
     {
         return y - yOffset;
     }
 
-    public static void setXOffset(float xOffset)
+    public static void setXOffset(double xOffset)
     {
         Position.xOffset = xOffset;
     }
 
-    public static void setYOffset(float yOffset)
+    public static void setYOffset(double yOffset)
     {
         Position.yOffset = yOffset;
     }
 
 
-    public float getX()
+    public double getX()
     {
         return x;
     }
 
-    public float getY()
+    public double getY()
     {
         return y;
     }
 
-    public static float getScrX(float x)
+    public static double getScrX(float x)
     {
         return x - xOffset;
     }
 
-    public static float getScrY(float y)
+    public static double getScrY(float y)
     {
         return y - yOffset;
     }
 
-    public static float getYOffset()
+    public Position getWorldPosition(double scrX, double scrY)
     {
-        return yOffset;
+        return new Position(scrX + xOffset, scrY + yOffset);
+    }
+
+    public void align()
+    {
+        x += xOffset;
+        y += yOffset;
     }
 }
