@@ -7,6 +7,7 @@ import my.game.infinite.shop.Shop;
 import my.game.infinite.shop.health.BSInvulnerability;
 import my.game.infinite.shop.health.BSMaxHealth;
 import my.game.infinite.shop.health.BSRegeneration;
+import my.game.menu.LabelColor;
 import my.game.menu.Option;
 import my.game.menu.SlidingOption;
 
@@ -19,10 +20,10 @@ public class MovementShop extends Shop
     {
         super(state);
         this.shop = shop;
-        addShop(new BSAcceleration(state, this, player), new SlidingOption(10, 20, "Acceleration", new Color(0, 255, 0), new Color(0, 128, 0), 0));
-        addShop(new BSDeceleration(state, this, player), new SlidingOption(40, 20, "Deceleration", new Color(0, 255, 0), new Color(0, 128, 0), 1));
-        addShop(new BSMaximumSpeed(state, this, player), new SlidingOption(70, 20, "Maximum Speed", new Color(0, 255, 0), new Color(0, 128, 0), 2));
-        options.add(new SlidingOption(200, 50, "Back", new Color(100, 255, 0), new Color(0, 128, 0), 4));
+        addShop(new BSAcceleration(state, this, player), new SlidingOption(10, 20, "Acceleration", LabelColor.GREEN, 0));
+        addShop(new BSDeceleration(state, this, player), new SlidingOption(40, 20, "Deceleration", LabelColor.GREEN, 1));
+        addShop(new BSMaximumSpeed(state, this, player), new SlidingOption(70, 20, "Maximum Speed", LabelColor.GREEN, 2));
+        options.add(new SlidingOption(200, 50, "Back", LabelColor.GREEN, 4));
         setRelativeCoordinates(-1000, 0);
     }
 

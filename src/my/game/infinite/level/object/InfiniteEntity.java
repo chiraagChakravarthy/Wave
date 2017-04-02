@@ -6,24 +6,20 @@ import my.game.infinite.level.object.abilities.WarpTracker;
 import my.game.object.Entity;
 import my.game.object.tail.Tail;
 
-public class InfiniteEntity extends Entity
-{
+public class InfiniteEntity extends Entity {
     protected BoostTracker booster;
     protected WarpTracker warper;
     protected CloakTracker cloaker;
 
-    public InfiniteEntity(double x, double y, double acc, double dcc, double maxSpeed, Tail tail)
-    {
+    public InfiniteEntity(double x, double y, double acc, double dcc, double maxSpeed, Tail tail, int heath) {
         super(x, y, acc, dcc, maxSpeed, tail);
         booster = new BoostTracker(this);
         warper = new WarpTracker(this);
         cloaker = new CloakTracker(this);
     }
 
-    public void tick()
-    {
-        if(!booster.isBoosting())
-        {
+    public void tick() {
+        if (!booster.isBoosting()) {
             super.tick();
         }
         booster.tick();
@@ -31,17 +27,15 @@ public class InfiniteEntity extends Entity
         cloaker.tick();
     }
 
-    public BoostTracker getBooster()
-    {
+    public BoostTracker getBooster() {
         return booster;
     }
-    public WarpTracker getWarper()
-    {
+
+    public WarpTracker getWarper() {
         return warper;
     }
 
-    public CloakTracker getCloaker()
-    {
+    public CloakTracker getCloaker() {
         return cloaker;
     }
 

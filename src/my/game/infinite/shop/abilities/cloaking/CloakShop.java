@@ -1,9 +1,9 @@
 package my.game.infinite.shop.abilities.cloaking;
 
-import my.game.constants.Constants;
 import my.game.game_state.GameState;
 import my.game.infinite.level.object.InfinitePlayer;
 import my.game.infinite.shop.Shop;
+import my.game.menu.LabelColor;
 import my.game.menu.SlidingOption;
 
 public class CloakShop extends Shop
@@ -13,9 +13,9 @@ public class CloakShop extends Shop
     {
         super(state);
         this.shop = shop;
-        addShop(new BSCloakTime(state, this, player), new SlidingOption(10, 20, "Cloak Time", new Constants().nameColor, new Constants().boxColor, 0));
-        addShop(new BSCloakChargeRate(state, this, player), new SlidingOption(40, 20, "Cloak Charge Rate", new Constants().nameColor, new Constants().boxColor, 1));
-        options.add(new SlidingOption(200, 50, "Back", new Constants().nameColor, new Constants().boxColor, 3));
+        addShop(new BSCloakTime(state, this, player), new SlidingOption(10, 20, "Cloak Time", LabelColor.GREEN, 0));
+        addShop(new BSCloakChargeRate(state, this, player), new SlidingOption(40, 20, "Cloak Charge Rate", LabelColor.GREEN, 1));
+        options.add(new SlidingOption(200, 50, "Back", LabelColor.GREEN, 3));
         setRelativeCoordinates(-1000, 0);
     }
 

@@ -4,6 +4,7 @@ import my.game.engine.Game;
 import my.game.game_state.GameState;
 import my.game.game_state.InfiniteState;
 import my.game.infinite.InfiniteGame;
+import my.game.menu.LabelColor;
 import my.game.menu.SlideEnterMenu;
 import my.game.menu.SlidingOption;
 
@@ -16,9 +17,9 @@ public class GameMenu extends SlideEnterMenu
     {
         super(state);
         this.game = game;
-        options.add(new SlidingOption(10, 50, "Play", new Color(0, 255, 0), new Color(0, 128, 0), 0));
-        options.add(new SlidingOption(100, 50, "Shop", new Color(0, 255, 0), new Color(0, 128, 0), 1));
-        options.add(new SlidingOption(200, 50, "Exit", new Color(0, 255, 0), new Color(0, 128, 0), 2));
+        options.add(new SlidingOption(10, 50, "Play", LabelColor.GREEN, 0));
+        options.add(new SlidingOption(100, 50, "Shop", LabelColor.GREEN, 1));
+        options.add(new SlidingOption(200, 50, "Exit", LabelColor.GREEN, 2));
         setRelativeCoordinates(-1000, 0);
     }
 

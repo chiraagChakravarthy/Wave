@@ -5,105 +5,81 @@ import my.game.object.tail.Tail;
 import java.awt.*;
 import java.util.Random;
 
-public class Enemy extends Entity
-{
+public class Enemy extends Entity {
     private int difficulty;
     private int spawnProtectionTimer;
     private static Player player;
     private Random random;
 
-    public Enemy(int x, int y, float acc, float dcc, float maxSpeed, Tail tail, int difficulty)
-    {
+    public Enemy(int x, int y, float acc, float dcc, float maxSpeed, Tail tail, int difficulty) {
         super(x, y, dcc, acc, maxSpeed, tail);
         this.difficulty = difficulty;
         spawnProtectionTimer = 30;
         random = new Random();
     }
 
-    public Enemy(Enemy enemy)
-    {
+    public Enemy(Enemy enemy) {
         super(enemy);
         this.difficulty = getDifficultyLevel();
         spawnProtectionTimer = 30;
         random = new Random();
     }
 
-    public void tick()
-    {
-        if (getY() > player.getY())
-        {
+    public void tick() {
+        if (getY() > player.getY()) {
             if (random.nextInt(getDifficulty()) + 1 == 1)
                 setUp(true);
-        }
-        else
-        {
+        } else {
             setUp(false);
         }
 
-        if (getY() < player.getY())
-        {
+        if (getY() < player.getY()) {
             if (random.nextInt(getDifficulty()) + 1 == 1)
                 setDown(true);
-        }
-        else
-        {
+        } else {
             setDown(false);
         }
 
-        if (getX() > player.getX())
-        {
+        if (getX() > player.getX()) {
             if (random.nextInt(getDifficulty()) + 1 == 1)
                 setLeft(true);
-        }
-        else
-        {
+        } else {
             setLeft(false);
         }
 
-        if (getX() < player.getX())
-        {
+        if (getX() < player.getX()) {
             if (random.nextInt(getDifficulty()) + 1 == 1)
                 setRight(true);
-        }
-        else
-        {
+        } else {
             setRight(false);
         }
 
         super.tick();
-        if (spawnProtectionTimer > 0)
-        {
+        if (spawnProtectionTimer > 0) {
             spawnProtectionTimer--;
             invisible = !invisible;
-        }
-        else
-        {
+        } else {
             invisible = false;
         }
     }
 
-    public boolean isSpawnProtected()
-    {
+    public boolean isSpawnProtected() {
         return spawnProtectionTimer > 0;
     }
 
-    public void render(Graphics g)
-    {
+    public void render(Graphics g) {
         super.render(g);
     }
 
-    public int getDifficulty()
-    {
+    public int getDifficulty() {
         return 101 - difficulty;
     }
 
-    public int getDifficultyLevel()
-    {
+    public int getDifficultyLevel() {
         return difficulty;
     }
 
-    public static void setPlayer(Player player)
-    {
+    public static void setPlayer(Player player) {
         Enemy.player = player;
     }
 }

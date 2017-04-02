@@ -12,8 +12,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class CampaignState extends GameState
-{
+public class CampaignState extends GameState {
     private ArrayList<GameLevel> levels = new ArrayList<GameLevel>();
     private int level;
     private boolean pauseScreen, lvEndScreen, deathScreen;
@@ -21,8 +20,7 @@ public class CampaignState extends GameState
     private LevelEndMenu levelEndMenu;
     private DeathMenu deathMenu;
 
-    public CampaignState(GameStateManager gsm)
-    {
+    public CampaignState(GameStateManager gsm) {
         super(gsm);
         addLevels();
         levelEndMenu = new LevelEndMenu(this);
@@ -30,8 +28,7 @@ public class CampaignState extends GameState
         deathMenu = new DeathMenu(this);
     }
 
-    public void tick(double delta)
-    {
+    public void tick() {
         if (pauseScreen)
             pauseMenu.tick();
         else if (lvEndScreen)
@@ -39,11 +36,10 @@ public class CampaignState extends GameState
         else if (deathScreen)
             deathMenu.tick();
         else
-            levels.get(level).tick(delta);
+            levels.get(level).tick();
     }
 
-    public void render(Graphics g)
-    {
+    public void render(Graphics g) {
         if (pauseScreen)
             pauseMenu.render(g);
         else if (lvEndScreen)
@@ -54,85 +50,50 @@ public class CampaignState extends GameState
             levels.get(level).render(g);
     }
 
-    public void keyPressed(int k)
-    {
-        if (pauseScreen)
-        {
+    public void keyPressed(int k) {
+        if (pauseScreen) {
             pauseMenu.keyPressed(k);
-        }
-        else if (lvEndScreen)
-        {
+        } else if (lvEndScreen) {
             levelEndMenu.keyPressed(k);
-        }
-        else if (deathScreen)
-        {
+        } else if (deathScreen) {
             deathMenu.keyPressed(k);
-        }
-        else
-        {
+        } else {
             levels.get(level).keyPressed(k);
         }
     }
 
-    public void keyReleased(int k)
-    {
+    public void keyReleased(int k) {
         if (pauseScreen)
             pauseMenu.keyReleased(k);
-        else if (lvEndScreen)
-        {
+        else if (lvEndScreen) {
             levelEndMenu.keyReleased(k);
-        }
-        else if (deathScreen)
-        {
+        } else if (deathScreen) {
             deathMenu.keyReleased(k);
-        }
-        else
+        } else
             levels.get(level).keyReleased(k);
     }
 
-    public void mousePressed(MouseEvent e)
-    {
-        if (pauseScreen)
-            pauseMenu.mousePressed(e);
-        else if (lvEndScreen)
-        {
-            levelEndMenu.mousePressed(e);
-        }
-        else if (deathScreen)
-        {
-            deathMenu.mousePressed(e);
-        }
-        else
-            levels.get(level).mousePressed(e);
+    public void mousePressed(MouseEvent e) {
+        if (pauseScreen) pauseMenu.mousePressed(e);
+        else if (lvEndScreen) levelEndMenu.mousePressed(e);
+        else if (deathScreen) deathMenu.mousePressed(e);
+        else levels.get(level).mousePressed(e);
     }
 
-    public void mouseReleased(MouseEvent e)
-    {
-        if (pauseScreen)
-            pauseMenu.mouseReleased(e);
-        else if (lvEndScreen)
-        {
-            levelEndMenu.mouseReleased(e);
-        }
-        else if (deathScreen)
-        {
-            deathMenu.mouseReleased(e);
-        }
-        else
-            levels.get(level).mouseReleased(e);
+    public void mouseReleased(MouseEvent e) {
+        if (pauseScreen) pauseMenu.mouseReleased(e);
+        else if (lvEndScreen) levelEndMenu.mouseReleased(e);
+        else if (deathScreen) deathMenu.mouseReleased(e);
+        else levels.get(level).mouseReleased(e);
     }
 
-    public void setPauseScreen(boolean pauseScreen)
-    {
+    public void setPauseScreen(boolean pauseScreen) {
         this.pauseScreen = pauseScreen;
-        if (pauseScreen)
-            Game.window.setTitle(Game.window.getTitle() + " (paused)");
-        else
-            Game.window.setTitle("Level " + (level + 1));
+        if (pauseScreen) Game.window.setTitle(Game.window.getTitle() + " (paused)");
+        else Game.window.setTitle("Level " + (level + 1));
     }
 
-    public void setDeathScreen(boolean deathScreen)
-    {
+    public void setDeathScreen(boolean deathScreen) {
         this.deathScreen = deathScreen;
         if (deathScreen)
             Game.window.setTitle("You Died!");
@@ -140,46 +101,36 @@ public class CampaignState extends GameState
             Game.window.setTitle("Level " + (level + 1));
     }
 
-    public void setLevelEndScreen(boolean lvEndScreen)
-    {
+    public void setLevelEndScreen(boolean lvEndScreen) {
         this.lvEndScreen = lvEndScreen;
-        if (lvEndScreen && level <= levels.size())
-        {
+        if (lvEndScreen && level <= levels.size()) {
             ((LevelSelectMenu) ((MenuState) gsm.getGameState(0)).getMenu(2)).setHighestLevel(level + 1);
         }
     }
 
-    public int getHighestLevel()
-    {
+    public int getHighestLevel() {
         return levels.size() + 1;
     }
 
-    public GameLevel getLevel()
-    {
+    public GameLevel getLevel() {
         return levels.get(level);
     }
 
-    public int getLevelNumber()
-    {
+    public int getLevelNumber() {
         return level;
     }
 
-    public void setLevel(int level)
-    {
-        if (level < levels.size())
-        {
+    public void setLevel(int level) {
+        if (level < levels.size()) {
             this.level = level;
             Game.window.setTitle("Level " + (level + 1));
-        }
-        else
-        {
+        } else {
             gsm.setGameState(0);
             ((MenuState) gsm.getGameState(0)).setMenu(2);
         }
     }
 
-    private void addLevels()
-    {
+    private void addLevels() {
         levels.add(new Level1(this));
         levels.add(new Level2(this));
         levels.add(new Level3(this));
@@ -191,5 +142,7 @@ public class CampaignState extends GameState
         levels.add(new Level9(this));
         levels.add(new Level10(this));
         levels.add(new Level11(this));
+        levels.add(new Level12(this));
+        levels.add(new Level13(this));
     }
 }

@@ -1,13 +1,10 @@
 package my.game.menu;
 
-import com.sun.org.apache.bcel.internal.generic.BALOAD;
-import com.sun.org.apache.regexp.internal.RE;
 import my.game.engine.Game;
 
 import java.awt.*;
 
-public class Label
-{
+public class Label {
     protected String name;
     protected double y;
     protected double x;
@@ -15,19 +12,15 @@ public class Label
     protected int height;
     protected int scale;
     protected int stringWidth;
-    protected Color nameColor;
-    protected Color boxColor;
+    protected LabelColor color;
     protected boolean centered;
 
-    public Label(int y, int scale, String name, Color nameColor, Color boxColor)
-    {
-        this.nameColor = nameColor;
-        this.boxColor = boxColor;
+    public Label(int y, int scale, String name, LabelColor color) {
+        this.color = color;
         this.y = y;
         this.scale = scale;
         this.name = name;
-        FontMetrics metrics = new FontMetrics(new Font("Arial", 0, scale))
-        {
+        FontMetrics metrics = new FontMetrics(new Font("Arial", 0, scale)) {
             private static final long serialVersionUID = -8572322988205722333L;
         };
         this.stringWidth = (int) metrics.getStringBounds(name, null).getWidth();
@@ -37,16 +30,13 @@ public class Label
         centered = true;
     }
 
-    public Label(int x, int y, int scale, String name, Color nameColor, Color boxColor)
-    {
-        this.nameColor = nameColor;
-        this.boxColor = boxColor;
+    public Label(int x, int y, int scale, String name, LabelColor color) {
+        this.color = color;
         this.x = x;
         this.y = y;
         this.scale = scale;
         this.name = name;
-        FontMetrics metrics = new FontMetrics(new Font("Arial", 0, scale))
-        {
+        FontMetrics metrics = new FontMetrics(new Font("Arial", 0, scale)) {
             private static final long serialVersionUID = -8572322988205722333L;
         };
         this.width = (int) (metrics.getStringBounds(name, null).getWidth() + (double) (scale / 4));
@@ -55,87 +45,67 @@ public class Label
         centered = false;
     }
 
-    public void setWidth(int width)
-    {
+    public void setWidth(int width) {
         this.width = width;
     }
 
-    public void setX(double x)
-    {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public void setY(double y)
-    {
+    public void setY(double y) {
         this.y = y;
     }
 
-    public void tick()
-    {
+    public void tick() {
 
     }
 
-    public void render(Graphics g)
-    {
+    public void render(Graphics g) {
         g.setFont(new Font("Arial", 0, this.scale));
-        g.setColor(this.boxColor);
+        g.setColor(color.getBoxColor());
         g.fillRect((int) x, (int) y, this.width, this.height);
-        g.setColor(this.nameColor);
+        g.setColor(color.getNameColor());
         g.drawString(this.name, (int) x + width / 2 - stringWidth / 2, (int) y + height - height / 4);
     }
 
-    public int getHeight()
-    {
+    public int getHeight() {
         return this.height;
     }
 
-    public void setName(String name)
-    {
+    public void setName(String name) {
         this.name = name;
-        FontMetrics metrics = new FontMetrics(new Font("Arial", 0, scale))
-        {
+        FontMetrics metrics = new FontMetrics(new Font("Arial", 0, scale)) {
             private static final long serialVersionUID = -8572322988205722333L;
         };
         this.width = (int) (metrics.getStringBounds(name, null).getWidth() + (double) (scale / 4));
         this.height = (int) (metrics.getStringBounds(name, null).getHeight() + (double) (scale / 8));
         this.stringWidth = (int) metrics.getStringBounds(name, null).getWidth();
-        if(centered)
-            x = Game.WIDTH / 2 - width / 2;
+        if (centered) x = Game.WIDTH / 2 - width / 2;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return this.name;
     }
 
-    public double getX()
-    {
+    public double getX() {
         return this.x;
     }
 
-    public int getWidth()
-    {
+    public int getWidth() {
         return this.width;
     }
 
-    public double getY()
-    {
+    public double getY() {
         return y;
     }
 
-    public void setNameColor(Color nameColor)
-    {
-        this.nameColor = nameColor;
+    public void setColor(LabelColor color) {
+        this.color = color;
     }
 
-    public void setBoxColor(Color boxColor)
-    {
-        this.boxColor = boxColor;
-    }
-
-    public Rectangle getArea()
-    {
-        return new Rectangle((int)x, (int)y, width, height);
+    public Rectangle getArea() {
+        return new Rectangle((int) x, (int) y, width, height);
     }
 }
 

@@ -3,21 +3,16 @@ package my.game.campaign.levels;
 import my.game.campaign.GameLevel;
 import my.game.game_state.GameState;
 import my.game.object.Enemies;
-import my.game.object.Enemy;
 
-public class Level13 extends GameLevel
-{
+public class Level13 extends GameLevel{
 
-    public Level13(GameState state)
-    {
-        super(40, state);
+    public Level13(GameState state) {
+        super(15, state);
     }
 
-    public void init()
-    {
-        enemies.addEnemy(new Enemy(new Enemies().goon2), 0);
-        enemies.addEnemy(new Enemy(new Enemies().goon), 10);
-        enemies.addEnemy(new Enemy(new Enemies().goon), 20);
-        enemies.addEnemy(new Enemy(new Enemies().goon2), 30);
+    @Override
+    public void init() {
+        Enemies enemies = new Enemies();
+
     }
 }

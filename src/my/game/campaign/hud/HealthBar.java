@@ -31,7 +31,7 @@ public class HealthBar
         g.fillRect(x, y, (int) width, height);
         g.setColor(new Color(0, 255, 0));
         double healthWidth = (this.width - 20) * (health / maxHealth);
-        g.fillRect((int) (x + 10), y + 10, (int) healthWidth, height - 20);
+        g.fillRect(x + 10, y + 10, (int) healthWidth, height - 20);
     }
 
     public double getMaxHealth()

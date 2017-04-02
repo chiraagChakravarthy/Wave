@@ -6,31 +6,24 @@ import my.game.infinite.level.object.InfinitePlayer;
 import my.game.infinite.shop.BuySellMenu;
 import my.game.infinite.shop.Shop;
 
-public class BSMaxHealth extends BuySellMenu
-{
-
-    public BSMaxHealth(GameState state, Shop shop, InfinitePlayer player)
-    {
+public class BSMaxHealth extends BuySellMenu {
+    public BSMaxHealth(GameState state, Shop shop, InfinitePlayer player) {
         super(state, "Maximum Health", 5, shop, player);
     }
 
-    public boolean canSell()
-    {
+    public boolean canSell() {
         return false;
     }
 
-    public boolean canBuy()
-    {
-        return false;
+    public boolean canBuy() {
+        return true;
     }
 
-    public void buy()
-    {
-
+    public void buy() {
+        player.set
     }
 
-    public void sell()
-    {
+    public void sell() {
 
     }
 }

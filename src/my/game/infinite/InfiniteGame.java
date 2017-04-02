@@ -1,4 +1,5 @@
 package my.game.infinite;
+
 import my.game.engine.Game;
 import my.game.game_state.GameState;
 import my.game.infinite.level.InfiniteLevel;
@@ -11,8 +12,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-public class InfiniteGame
-{
+public class InfiniteGame {
     private InfinitePlayer player;
     private MainShop shop;
     private InfiniteLevel level;
@@ -20,8 +20,7 @@ public class InfiniteGame
     private GameState state;
     private int gameState;
 
-    public InfiniteGame(GameState state)
-    {
+    public InfiniteGame(GameState state) {
         gameState = 0;
         this.state = state;
         level = new InfiniteLevel(state);
@@ -30,10 +29,8 @@ public class InfiniteGame
         gameMenu = new GameMenu(state, this);
     }
 
-    public void tick()
-    {
-        switch(gameState)
-        {
+    public void tick() {
+        switch (gameState) {
             case 0:
                 gameMenu.tick();
                 break;
@@ -45,10 +42,8 @@ public class InfiniteGame
         }
     }
 
-    public void render(Graphics g)
-    {
-        switch(gameState)
-        {
+    public void render(Graphics g) {
+        switch (gameState) {
             case 0:
                 gameMenu.render(g);
                 break;
@@ -60,18 +55,14 @@ public class InfiniteGame
         }
     }
 
-    public void keyPressed(int k)
-    {
-        if(Game.debugMode)
-        {
-            switch(k)
-            {
+    public void keyPressed(int k) {
+        if (Game.debugMode) {
+            switch (k) {
                 case KeyEvent.VK_1:
                     shop.setCredits(shop.getCredits() + 10);
                     break;
                 default:
-                    switch(gameState)
-                    {
+                    switch (gameState) {
                         case 0:
                             gameMenu.keyPressed(k);
                             break;
@@ -83,11 +74,8 @@ public class InfiniteGame
                     }
                     break;
             }
-        }
-        else
-        {
-            switch(gameState)
-            {
+        } else {
+            switch (gameState) {
                 case 0:
                     gameMenu.keyPressed(k);
                     break;
@@ -100,10 +88,8 @@ public class InfiniteGame
         }
     }
 
-    public void keyReleased(int k)
-    {
-        switch(gameState)
-        {
+    public void keyReleased(int k) {
+        switch (gameState) {
             case 0:
                 gameMenu.keyReleased(k);
                 break;
@@ -115,30 +101,24 @@ public class InfiniteGame
         }
     }
 
-    public void setGameState(int gameState)
-    {
+    public void setGameState(int gameState) {
         this.gameState = gameState;
     }
 
-    public void setCredits(double credits)
-    {
+    public void setCredits(double credits) {
         shop.setCredits(credits);
     }
 
-    public double getCredits()
-    {
+    public double getCredits() {
         return shop.getCredits();
     }
 
-    public Shop getShop()
-    {
+    public Shop getShop() {
         return shop;
     }
 
-    public void mousePressed(MouseEvent e)
-    {
-        switch(gameState)
-        {
+    public void mousePressed(MouseEvent e) {
+        switch (gameState) {
             case 0:
                 gameMenu.mousePressed(e);
                 break;
@@ -150,10 +130,8 @@ public class InfiniteGame
         }
     }
 
-    public void mouseReleased(MouseEvent e)
-    {
-        switch(gameState)
-        {
+    public void mouseReleased(MouseEvent e) {
+        switch (gameState) {
             case 0:
                 gameMenu.mouseReleased(e);
                 break;
@@ -165,8 +143,7 @@ public class InfiniteGame
         }
     }
 
-    public InfinitePlayer getPlayer()
-    {
+    public InfinitePlayer getPlayer() {
         return player;
     }
 }

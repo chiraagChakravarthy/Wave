@@ -1,10 +1,10 @@
 package my.game.campaign.menu;
 
-import my.game.constants.Constants;
 import my.game.engine.Game;
 import my.game.game_state.CampaignState;
 import my.game.game_state.GameState;
 import my.game.game_state.MenuState;
+import my.game.menu.LabelColor;
 import my.game.menu.SlideEnterMenu;
 import my.game.menu.SlidingOption;
 
@@ -17,10 +17,10 @@ public class PauseMenu extends SlideEnterMenu
     public PauseMenu(GameState state)
     {
         super(state);
-        options.add(new SlidingOption(10, 50, "Back to Game", new Constants().nameColor, new Constants().boxColor, 0));
-        options.add(new SlidingOption(100, 50, "Reset", new Constants().nameColor, new Constants().boxColor, 1));
-        options.add(new SlidingOption(200, 50, "Main Menu", new Constants().nameColor, new Constants().boxColor, 2));
-        options.add(new SlidingOption(300, 50, "Level Select", new Constants().nameColor, new Constants().boxColor, 3));
+        options.add(new SlidingOption(10, 50, "Back to Game", LabelColor.GREEN, 0));
+        options.add(new SlidingOption(100, 50, "Reset", LabelColor.GREEN, 1));
+        options.add(new SlidingOption(200, 50, "Main Menu", LabelColor.GREEN, 2));
+        options.add(new SlidingOption(300, 50, "Level Select",LabelColor.GREEN, 3));
         setRelativeCoordinates(-1000, 0);
     }
 

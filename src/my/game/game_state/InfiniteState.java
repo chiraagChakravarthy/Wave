@@ -7,14 +7,13 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class InfiniteState extends GameState
-{
+public class InfiniteState extends GameState {
     private ArrayList<InfiniteGame> games;
     private int game;
     private GameSelectionMenu gameMenu;
     private boolean inMenu;
-    public InfiniteState(GameStateManager gsm)
-    {
+
+    public InfiniteState(GameStateManager gsm) {
         super(gsm);
         games = new ArrayList<InfiniteGame>();
         gameMenu = new GameSelectionMenu(this);
@@ -22,86 +21,74 @@ public class InfiniteState extends GameState
         inMenu = true;
     }
 
-    public void tick(double delta)
-    {
-        if(inMenu)
+    public void tick() {
+        if (inMenu)
             gameMenu.tick();
-        else
-        {
+        else {
             games.get(game).tick();
         }
     }
 
-    public void render(Graphics g)
-    {
-        if(inMenu)
+    public void render(Graphics g) {
+        if (inMenu)
             gameMenu.render(g);
         else
             games.get(game).render(g);
     }
 
-    public void keyPressed(int k)
-    {
-        if(inMenu)
+    public void keyPressed(int k) {
+        if (inMenu)
             gameMenu.keyPressed(k);
         else
             games.get(game).keyPressed(k);
     }
 
-    public void keyReleased(int k)
-    {
-        if(inMenu)
+    public void keyReleased(int k) {
+        if (inMenu)
             gameMenu.keyReleased(k);
         else
             games.get(game).keyReleased(k);
     }
 
-    public void mousePressed(MouseEvent e)
-    {
-        if(inMenu)
+    public void mousePressed(MouseEvent e) {
+        if (inMenu)
             gameMenu.mousePressed(e);
         else
             games.get(game).mousePressed(e);
     }
 
-    public void mouseReleased(MouseEvent e)
-    {
-        if(inMenu)
+    public void mouseReleased(MouseEvent e) {
+        if (inMenu)
             gameMenu.mouseReleased(e);
         else
             games.get(game).mouseReleased(e);
     }
 
-    public void newGame()
-    {
+    public void newGame() {
         games.add(new InfiniteGame(this));
         game = games.size() - 1;
         inMenu = false;
     }
 
-    public void setGame(int game)
-    {
+    public void setGame(int game) {
         this.game = game;
         inMenu = false;
     }
 
-    public void setInMenu(boolean inMenu)
-    {
+    public void setInMenu(boolean inMenu) {
         this.inMenu = inMenu;
         gameMenu.setOptions(games.size());
     }
 
-    public int getGameNumber()
-    {
+    public int getGameNumber() {
         return game;
     }
-    public InfiniteGame getGame()
-    {
+
+    public InfiniteGame getGame() {
         return games.get(game);
     }
 
-    public GameSelectionMenu getGameMenu()
-    {
+    public GameSelectionMenu getGameMenu() {
         return gameMenu;
     }
 }

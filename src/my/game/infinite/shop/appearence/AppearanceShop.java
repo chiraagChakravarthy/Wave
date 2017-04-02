@@ -1,9 +1,8 @@
 package my.game.infinite.shop.appearence;
 
-import my.game.constants.Constants;
 import my.game.game_state.GameState;
 import my.game.infinite.shop.Shop;
-import my.game.menu.Option;
+import my.game.menu.LabelColor;
 import my.game.menu.SlidingOption;
 
 public class AppearanceShop extends Shop
@@ -15,7 +14,7 @@ public class AppearanceShop extends Shop
         this.shop = shop;
         //color
         //tail type (achievement unlocked)
-        options.add(new SlidingOption(200, 50, "Back", new Constants().nameColor, new Constants().boxColor, 0));
+        options.add(new SlidingOption(200, 50, "Back", LabelColor.GREEN, 0));
         setRelativeCoordinates(-1000, 0);
     }
 

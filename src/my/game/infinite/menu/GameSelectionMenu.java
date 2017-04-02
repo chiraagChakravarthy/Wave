@@ -3,11 +3,11 @@ package my.game.infinite.menu;
 import my.game.engine.Game;
 import my.game.game_state.GameState;
 import my.game.game_state.InfiniteState;
-import my.game.menu.*;
 import my.game.menu.Label;
-import my.game.menu.Menu;
+import my.game.menu.LabelColor;
+import my.game.menu.SlideEnterMenu;
+import my.game.menu.SlidingOption;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 
@@ -65,10 +65,10 @@ public class GameSelectionMenu extends SlideEnterMenu
         int i;
         for(i = 0; i < games; i++)
         {
-            options.add(new SlidingOption(i * 100 + 10, 50, "Game " + (i + 1), new Color(0, 255, 0), new Color(0, 128, 0), i));
+            options.add(new SlidingOption(i * 100 + 10, 50, "Game " + (i + 1), LabelColor.GREEN, i));
         }
-        options.add(new SlidingOption((i) * 100 + 10, 50, "New Game", new Color(0, 255, 0), new Color(0, 128, 0), i + 1));
-        options.add(new SlidingOption((i) * 100 + 110, 50, "Back", new Color(0, 255, 0), new Color(0, 128, 0), i + 2));
+        options.add(new SlidingOption((i) * 100 + 10, 50, "New Game", LabelColor.GREEN, i + 1));
+        options.add(new SlidingOption((i) * 100 + 110, 50, "Back", LabelColor.GREEN, i + 2));
         setRelativeCoordinates(-1000, 0);
     }
 }

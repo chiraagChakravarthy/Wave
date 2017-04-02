@@ -1,7 +1,7 @@
 package my.game.campaign.hud;
 
-import my.game.constants.Constants;
 import my.game.menu.Label;
+import my.game.menu.LabelColor;
 
 import java.awt.*;
 
@@ -13,7 +13,7 @@ public class Timer extends Label
 
     public Timer(int x, int y, int scale, String name)
     {
-        super(x, y, 50, "0", new Constants().nameColor, new Constants().boxColor);
+        super(x, y, 50, "0", LabelColor.GREEN);
         initialTime = Integer.parseInt(name);
     }
 

@@ -12,7 +12,7 @@ public abstract class GameState
         this.gsm = gsm;
     }
 
-    public abstract void tick(double delta);
+    public abstract void tick();
 
     public abstract void render(Graphics g);
 

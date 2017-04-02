@@ -22,9 +22,9 @@ public class GameStateManager
         this.gameState = gameState;
     }
 
-    public void tick(double delta)
+    public void tick()
     {
-        gameStates.get(gameState).tick(delta);
+        gameStates.get(gameState).tick();
     }
 
     public void render(Graphics g)

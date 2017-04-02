@@ -1,15 +1,15 @@
 package my.game.campaign.menu;
 
-import java.awt.Graphics;
-
-import my.game.constants.Constants;
 import my.game.engine.Game;
 import my.game.game_state.CampaignState;
 import my.game.game_state.GameState;
 import my.game.game_state.MenuState;
 import my.game.menu.Label;
+import my.game.menu.LabelColor;
 import my.game.menu.Menu;
 import my.game.menu.Option;
+
+import java.awt.*;
 
 public class DeathMenu extends Menu
 {
@@ -18,11 +18,10 @@ public class DeathMenu extends Menu
     public DeathMenu(GameState state)
     {
         super(state);
-        Constants constants = new Constants();
-        label = new Label(10, 50, "You Died", constants.nameColor, constants.boxColor);
-        options.add(new Option(100, 50, "Retry", constants.nameColor, constants.boxColor));
-        options.add(new Option(200, 50, "Level Select", constants.nameColor, constants.boxColor));
-        options.add(new Option(300, 50, "Main Menu", constants.nameColor, constants.boxColor));
+        label = new Label(10, 50, "You Died", LabelColor.GREEN);
+        options.add(new Option(100, 50, "Retry", LabelColor.GREEN));
+        options.add(new Option(200, 50, "Level Select", LabelColor.GREEN));
+        options.add(new Option(300, 50, "Main Menu", LabelColor.GREEN));
     }
 
     public void render(Graphics g)

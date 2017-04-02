@@ -2,7 +2,6 @@ package my.game.campaign;
 
 import my.game.campaign.hud.HealthBar;
 import my.game.campaign.hud.Timer;
-import my.game.constants.Constants;
 import my.game.engine.Game;
 import my.game.game_state.CampaignState;
 import my.game.game_state.GameState;
@@ -15,8 +14,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-public abstract class GameLevel
-{
+public abstract class GameLevel {
     protected Player player;
     protected Timer timer;
     protected EnemyController enemies;
@@ -24,10 +22,9 @@ public abstract class GameLevel
     protected HealthBar healthBar;
     protected int initTime;
 
-    public GameLevel(int time, GameState state)
-    {
+    public GameLevel(int time, GameState state) {
         this.state = state;
-        player = new Player(new Constants().player);
+        player = new Player();
         enemies = new EnemyController();
         timer = new Timer(500, 10, 50, String.valueOf(time));
         healthBar = new HealthBar(10, 10, player.getHealth(), 400, timer.getHeight());
@@ -37,24 +34,16 @@ public abstract class GameLevel
         init();
     }
 
-    public void tick(double delta)
-    {
+    public void tick() {
         Entity.setLevelBounds(new Rectangle(Game.WIDTH, Game.HEIGHT));
-        if (initTime < 180)
-        {
+        if (initTime < 180) {
             initTime++;
             healthBar.setHealth(healthBar.getMaxHealth() * initTime / 180);
             timer.setTime(Math.round((timer.getInitialTime() * initTime / 180) * 10.0) / 10.0);
-        }
-        else
-        {
+        } else {
             healthBar.setHealth(player.getHealth());
-            if (timer.getTime() < 0)
-                ((CampaignState) state).setLevelEndScreen(true);
-            if (player.getHealth() <= 0)
-            {
-                ((CampaignState) state).setDeathScreen(true);
-            }
+            if (timer.getTime() < 0) ((CampaignState) state).setLevelEndScreen(true);
+            if (player.getHealth() <= 0) ((CampaignState) state).setDeathScreen(true);
             timer.tick();
             player.tick();
             enemies.setTimer(timer);
@@ -64,8 +53,7 @@ public abstract class GameLevel
         }
     }
 
-    public void render(Graphics g)
-    {
+    public void render(Graphics g) {
         timer.render(g);
         healthBar.render(g);
         player.render(g);
@@ -73,11 +61,9 @@ public abstract class GameLevel
             enemies.render(g);
     }
 
-    public void keyPressed(int k)
-    {
+    public void keyPressed(int k) {
         boolean debugMode = Game.debugMode;
-        switch (k)
-        {
+        switch (k) {
             case KeyEvent.VK_E:
                 if (debugMode)
                     timer.setTime(-1);
@@ -111,12 +97,9 @@ public abstract class GameLevel
         }
     }
 
-    public void keyReleased(int k)
-    {
-        if (Game.debugMode)
-        {
-            switch (k)
-            {
+    public void keyReleased(int k) {
+        if (Game.debugMode) {
+            switch (k) {
                 case KeyEvent.VK_I:
                     player.setInvulnerabilityTime(0);
                     break;
@@ -124,14 +107,12 @@ public abstract class GameLevel
                 default:
                     player.keyReleased(k);
             }
-        }
-        else
+        } else
             player.keyReleased(k);
     }
 
-    public void reset()
-    {
-        player = new Player(new Constants().player);
+    public void reset() {
+        player = new Player();
         timer.reset();
         enemies = new EnemyController();
         enemies.setTimer(timer);
@@ -143,13 +124,11 @@ public abstract class GameLevel
 
     public abstract void init();
 
-    public void mousePressed(MouseEvent e)
-    {
+    public void mousePressed(MouseEvent e) {
 
     }
 
-    public void mouseReleased(MouseEvent e)
-    {
+    public void mouseReleased(MouseEvent e) {
 
     }
 }

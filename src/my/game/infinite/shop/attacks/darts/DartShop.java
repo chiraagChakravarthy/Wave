@@ -1,10 +1,9 @@
 package my.game.infinite.shop.attacks.darts;
 
-import my.game.constants.Constants;
 import my.game.game_state.GameState;
 import my.game.infinite.level.object.InfinitePlayer;
 import my.game.infinite.shop.Shop;
-import my.game.menu.Option;
+import my.game.menu.LabelColor;
 import my.game.menu.SlidingOption;
 
 public class DartShop extends Shop
@@ -18,7 +17,7 @@ public class DartShop extends Shop
         //fire dart
         //stun dart
         //confusion dart
-        options.add(new SlidingOption(400, 50, "Back", new Constants().nameColor, new Constants().boxColor, 0));
+        options.add(new SlidingOption(400, 50, "Back", LabelColor.GREEN, 0));
         setRelativeCoordinates(-1000, 0);
     }
 

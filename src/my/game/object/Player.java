@@ -1,65 +1,48 @@
 package my.game.object;
 
+import my.game.engine.Game;
 import my.game.object.tail.Tail;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class Player extends Entity
-{
+public class Player extends Entity {
     private int health;
-    private int invilnerabilityTimer;
+    private int invulnerabilityTimer;
 
-    public Player(float x, float y, int health)
-    {
-        super(x, y, 0.1F, 0.05F, 2, new Tail(10, Color.white));
-        this.health = health;
-        invilnerabilityTimer = 60;
+    public Player() {
+        super(Game.WIDTH/2, Game.HEIGHT/2, 0.1F, 0.05F, 2, new Tail(10, Color.white));
+        this.health = 2;
+        invulnerabilityTimer = 60;
     }
 
-    public Player(Player player)
-    {
-        super(player);
-        this.health = player.getHealth();
-        invilnerabilityTimer = 60;
-    }
-
-    public void tick()
-    {
+    public void tick() {
         super.tick();
-        if (invilnerabilityTimer > 0)
-        {
-            invilnerabilityTimer--;
+        if (invulnerabilityTimer > 0) {
+            invulnerabilityTimer--;
             invisible = !invisible;
-        }
-        else
+        } else
             invisible = false;
     }
 
-    public boolean isInvulnerable()
-    {
-        return invilnerabilityTimer > 0;
+    public boolean isInvulnerable() {
+        return invulnerabilityTimer > 0;
     }
 
-    public void damage(int damage)
-    {
-        if (!(invilnerabilityTimer > 0))
-        {
+    public void damage(int damage) {
+        if (!(invulnerabilityTimer > 0)) {
             health -= damage;
-            invilnerabilityTimer = 60;
+            invulnerabilityTimer = 60;
         }
     }
 
-    public int getHealth()
-    {
+    public int getHealth() {
         return health;
     }
 
 
-    public void keyPressed(int k)
-    {
-        switch (k)
-        {
+    public void keyPressed(int k) {
+        switch (k) {
             case KeyEvent.VK_W:
             case KeyEvent.VK_UP:
                 up = true;
@@ -79,10 +62,8 @@ public class Player extends Entity
         }
     }
 
-    public void keyReleased(int k)
-    {
-        switch (k)
-        {
+    public void keyReleased(int k) {
+        switch (k) {
             case KeyEvent.VK_W:
             case KeyEvent.VK_UP:
                 up = false;
@@ -101,13 +82,11 @@ public class Player extends Entity
         }
     }
 
-    public void setHealth(int health)
-    {
+    public void setHealth(int health) {
         this.health = health;
     }
 
-    public void setInvulnerabilityTime(int invulnerability)
-    {
-        this.invilnerabilityTimer = invulnerability;
+    public void setInvulnerabilityTime(int invulnerability) {
+        this.invulnerabilityTimer = invulnerability;
     }
 }

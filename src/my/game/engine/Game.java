@@ -9,8 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 
-public class Game extends Canvas implements Runnable, KeyListener, MouseListener
-{
+public class Game extends Canvas implements Runnable, KeyListener, MouseListener {
     private static final long serialVersionUID = 1L;
     private boolean running = false;
     private static Thread thread;
@@ -20,13 +19,11 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
     public static Window window;
     public static final boolean debugMode = true;
 
-    public Game()
-    {
+    public Game() {
         window = new Window("Wave", WIDTH, HEIGHT + 22, this);
     }
 
-    public void start()
-    {
+    public void start() {
         thread = new Thread(this);
         gsm = new GameStateManager(0);
         addKeyListener(this);
@@ -36,13 +33,11 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
         thread.start();
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         new Game();
     }
 
-    public void run()
-    {
+    public void run() {
         long lastTime = System.nanoTime();
         long timer = System.currentTimeMillis();
         int ticks = 60;
@@ -50,22 +45,19 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
         double delta = 0;
         int frames = 0;
         int updates = 0;
-        while (running)
-        {
+        while (running) {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
-            while (delta > 1)
-            {
-                tick(delta);
+            while (delta > 1) {
+                tick();
                 updates++;
                 delta--;
                 render();
                 frames++;
             }
 
-            if (System.currentTimeMillis() - timer >= 1000)
-            {
+            if (System.currentTimeMillis() - timer >= 1000) {
                 //System.out.println("FPS: " + frames + ", Ticks: " + updates);
                 updates = 0;
                 frames = 0;
@@ -75,28 +67,22 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
         stop();
     }
 
-    public void stop()
-    {
+    public void stop() {
         running = false;
-        try
-        {
+        try {
             thread.join();
-        } catch (InterruptedException e)
-        {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    public void tick(double delta)
-    {
-        gsm.tick(delta);
+    public void tick() {
+        gsm.tick();
     }
 
-    public void render()
-    {
+    public void render() {
         BufferStrategy bs = getBufferStrategy();
-        if (bs == null)
-        {
+        if (bs == null) {
             createBufferStrategy(3);
             return;
         }
@@ -109,46 +95,38 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
         bs.show();
     }
 
-    public void keyTyped(KeyEvent e)
-    {
+    public void keyTyped(KeyEvent e) {
 
     }
 
-    public void keyPressed(KeyEvent e)
-    {
+    public void keyPressed(KeyEvent e) {
         int k = e.getKeyCode();
         gsm.keyPressed(k);
 
     }
 
-    public void keyReleased(KeyEvent e)
-    {
+    public void keyReleased(KeyEvent e) {
         int k = e.getKeyCode();
         gsm.keyReleased(k);
     }
 
-    public void mouseClicked(MouseEvent e)
-    {
+    public void mouseClicked(MouseEvent e) {
 
     }
 
-    public void mousePressed(MouseEvent e)
-    {
+    public void mousePressed(MouseEvent e) {
         gsm.mousePressed(e);
     }
 
-    public void mouseReleased(MouseEvent e)
-    {
+    public void mouseReleased(MouseEvent e) {
         gsm.mouseReleased(e);
     }
 
-    public void mouseEntered(MouseEvent e)
-    {
+    public void mouseEntered(MouseEvent e) {
 
     }
 
-    public void mouseExited(MouseEvent e)
-    {
+    public void mouseExited(MouseEvent e) {
 
     }
 }

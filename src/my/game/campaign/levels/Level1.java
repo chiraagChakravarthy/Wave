@@ -16,6 +16,6 @@ public class Level1 extends GameLevel
     public void init()
     {
         Enemies enemies = new Enemies();
-        this.enemies.addEnemy(new Enemy(enemies.goon), 0);
+        this.enemies.addEnemy(new Enemy(enemies.snake), 0);
     }
 }

@@ -7,17 +7,13 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-public class InfinitePlayer extends InfiniteEntity
-{
-    public InfinitePlayer(double x, double y)
-    {
+public class InfinitePlayer extends InfiniteEntity {
+    public InfinitePlayer(double x, double y) {
         super(x, y, 0.2, 0.1, 2, new Tail(5, Color.white));
     }
 
-    public void keyPressed(int k)
-    {
-        switch (k)
-        {
+    public void keyPressed(int k) {
+        switch (k) {
             case KeyEvent.VK_W:
             case KeyEvent.VK_UP:
                 up = true;
@@ -34,20 +30,16 @@ public class InfinitePlayer extends InfiniteEntity
             case KeyEvent.VK_RIGHT:
                 right = true;
                 break;
-
             case KeyEvent.VK_SPACE:
                 booster.boost();
                 break;
-
             case KeyEvent.VK_F:
                 cloaker.cloak();
         }
     }
 
-    public void keyReleased(int k)
-    {
-        switch (k)
-        {
+    public void keyReleased(int k) {
+        switch (k) {
             case KeyEvent.VK_W:
             case KeyEvent.VK_UP:
                 up = false;
@@ -74,18 +66,15 @@ public class InfinitePlayer extends InfiniteEntity
         }
     }
 
-    public void mousePressed(MouseEvent e)
-    {
-        switch(e.getButton())
-        {
+    public void mousePressed(MouseEvent e) {
+        switch (e.getButton()) {
             case MouseEvent.BUTTON1:
                 warper.warp(new Position(e.getPoint()));
                 break;
         }
     }
 
-    public void mouseReleased(MouseEvent e)
-    {
+    public void mouseReleased(MouseEvent e) {
 
     }
 }

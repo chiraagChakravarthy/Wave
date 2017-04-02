@@ -26,7 +26,7 @@ public class MenuState extends GameState
         this.menu = menu;
     }
 
-    public void tick(double delta)
+    public void tick()
     {
         menus.get(menu).tick();
     }

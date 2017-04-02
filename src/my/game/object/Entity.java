@@ -5,8 +5,7 @@ import my.game.object.tail.Tail;
 import java.awt.*;
 import java.util.ArrayList;
 
-public abstract class Entity
-{
+public abstract class Entity {
     protected Position position;
     protected double velX;
     protected double velY;
@@ -24,19 +23,17 @@ public abstract class Entity
     protected boolean invisible;
     protected boolean infinite;
 
-    public Entity(double x, double y, double acc, double dcc, double maxSpeed, Tail tail)
-    {
+    public Entity(double x, double y, double acc, double dcc, double maxSpeed, Tail tail) {
         position = new Position(x, y);
         invisible = false;
         this.acc = acc;
         this.dcc = dcc;
         this.maxSpeed = maxSpeed;
         this.tail = tail;
-        hitBox = new Rectangle((int)x, (int)y, 32, 32);
+        hitBox = new Rectangle((int) x, (int) y, 32, 32);
     }
 
-    public Entity(Entity entity)
-    {
+    public Entity(Entity entity) {
         position = new Position(entity.getX(), entity.getY());
         this.acc = entity.getAcc();
         this.dcc = entity.getDcc();
@@ -46,69 +43,55 @@ public abstract class Entity
         hitBox = new Rectangle((int) position.getX(), (int) position.getY(), 32, 32);
     }
 
-    public void tick()
-    {
+    public void tick() {
         sortVelocities();
         checkCollision();
         updateLocation();
     }
 
-    public void sortVelocities()
-    {
-        if (up)
-        {
+    public void sortVelocities() {
+        if (up) {
             if (speedUp < maxSpeed)
                 speedUp += acc;
             else
                 speedUp = maxSpeed;
-        }
-        else
-        {
+        } else {
             if (speedUp > 0)
                 speedUp -= dcc;
             else
                 speedUp = 0;
         }
 
-        if (left)
-        {
+        if (left) {
             if (speedLeft < maxSpeed)
                 speedLeft += acc;
             else
                 speedLeft = maxSpeed;
-        }
-        else
-        {
+        } else {
             if (speedLeft > 0)
                 speedLeft -= dcc;
             else
                 speedLeft = 0;
         }
 
-        if (down)
-        {
+        if (down) {
             if (speedDown < maxSpeed)
                 speedDown += acc;
             else
                 speedDown = maxSpeed;
-        }
-        else
-        {
+        } else {
             if (speedDown > 0)
                 speedDown -= dcc;
             else
                 speedDown = 0;
         }
 
-        if (right)
-        {
+        if (right) {
             if (speedRight < maxSpeed)
                 speedRight += acc;
             else
                 speedRight = maxSpeed;
-        }
-        else
-        {
+        } else {
             if (speedRight > 0)
                 speedRight -= dcc;
             else
@@ -118,46 +101,37 @@ public abstract class Entity
         velY = speedDown - speedUp;
     }
 
-    public void updateLocation()
-    {
+    public void updateLocation() {
         position.setPosition(position.getX() + velX, position.getY() + velY);
         tail.setLocation(position);
         hitBox.setLocation((int) position.getX(), (int) position.getY());
     }
 
-    public void checkCollision()
-    {
-        if (position.getX() < 0)
-        {
+    public void checkCollision() {
+        if (position.getX() < 0) {
             position.setPosition(0, position.getY());
             velX = 0;
         }
-        if (position.getY() < 0)
-        {
+        if (position.getY() < 0) {
             position.setPosition(position.getX(), 0);
             velY = 0;
         }
-        if (position.getX() > levelBounds.getWidth() - 32)
-        {
+        if (position.getX() > levelBounds.getWidth() - 32) {
             position.setPosition((float) levelBounds.getWidth() - 32, position.getY());
             velX = 0;
         }
-        if (position.getY() > levelBounds.getHeight() - 32)
-        {
+        if (position.getY() > levelBounds.getHeight() - 32) {
             position.setPosition(position.getX(), (float) levelBounds.getHeight() - 32);
             velY = 0;
         }
     }
 
-    public Rectangle getHitBox()
-    {
+    public Rectangle getHitBox() {
         return hitBox;
     }
 
-    public void render(Graphics g)
-    {
-        if (!invisible)
-        {
+    public void render(Graphics g) {
+        if (!invisible) {
             tail.render(g);
             g.setColor(tail.getBaseColor());
             g.fillRect((int) position.getScrX(), (int) position.getScrY(), 32, 32);
@@ -165,133 +139,107 @@ public abstract class Entity
 
     }
 
-    public double getX()
-    {
+    public double getX() {
         return position.getX();
     }
 
-    public double getY()
-    {
+    public double getY() {
         return position.getY();
     }
 
-    public void setUp(boolean up)
-    {
+    public void setUp(boolean up) {
         this.up = up;
     }
 
-    public void setDown(boolean down)
-    {
+    public void setDown(boolean down) {
         this.down = down;
     }
 
-    public void setLeft(boolean left)
-    {
+    public void setLeft(boolean left) {
         this.left = left;
     }
 
-    public void setRight(boolean right)
-    {
+    public void setRight(boolean right) {
         this.right = right;
     }
 
-    public double getAcc()
-    {
+    public double getAcc() {
         return acc;
     }
 
-    public double getDcc()
-    {
+    public double getDcc() {
         return dcc;
     }
 
-    public double getMaxSpeed()
-    {
+    public double getMaxSpeed() {
         return maxSpeed;
     }
 
-    public ArrayList<Color> getColors()
-    {
+    public ArrayList<Color> getColors() {
         return tail.getColors();
     }
 
-    public void setLocation(double x, double y)
-    {
+    public void setLocation(double x, double y) {
         position.setPosition(x, y);
     }
 
-    public static void setLevelBounds(Rectangle levelBounds)
-    {
+    public static void setLevelBounds(Rectangle levelBounds) {
         Entity.levelBounds = levelBounds;
     }
 
-    public Tail getTail()
-    {
+    public Tail getTail() {
         return tail;
     }
 
-    public double getVelX()
-    {
+    public double getVelX() {
         return velX;
     }
 
-    public double getVelY()
-    {
+    public double getVelY() {
         return velY;
     }
 
-    public boolean isUp()
-    {
+    public boolean isUp() {
         return up;
     }
 
-    public boolean isDown()
-    {
+    public boolean isDown() {
         return down;
     }
 
-    public boolean isLeft()
-    {
+    public boolean isLeft() {
         return left;
     }
 
-    public boolean isRight()
-    {
+    public boolean isRight() {
         return right;
     }
 
-    public void setAcc(double acc)
-    {
+    public void setAcc(double acc) {
         this.acc = acc;
     }
 
-    public void setDcc(double dcc)
-    {
+    public void setDcc(double dcc) {
         this.dcc = dcc;
     }
 
-    public void setMaxSpeed(double maxSpeed)
-    {
+    public void setMaxSpeed(double maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
 
-    public void setVelX(double velX)
-    {
+    public void setVelX(double velX) {
         this.velX = velX;
     }
 
-    public void setVelY(double velY)
-    {
+    public void setVelY(double velY) {
         this.velY = velY;
     }
 
-    public void setInvisible(boolean invisible)
-    {
+    public void setInvisible(boolean invisible) {
         this.invisible = invisible;
     }
 
-    public boolean isInvisible()
-    {
+    public boolean isInvisible() {
         return invisible;
     }
 }

@@ -16,9 +16,9 @@ public class Tail
     {
         this.baseColor = color;
         this.length = length;
-        for (int i = 1; i < length + 1; i++)
+        for (double i = 1; i < length + 1; i++)
         {
-            colors.add(new Color(color.getRed(), color.getGreen(), color.getBlue(), i * (255 / length)));
+            colors.add(new Color(color.getRed(), color.getGreen(), color.getBlue(), (int)(i * (255 / length))));
         }
     }
 
